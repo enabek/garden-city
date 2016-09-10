@@ -15,6 +15,13 @@ app.use(function(req, res, next){
   next();
 });
 
-app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname + '/../index.html'));
+app.use(express.static(path.join(__dirname + '/../client')));
+
+// app.get('/', function(req, res){
+//   res.sendFile(path.join(__dirname + '/../index.html'));
+// });
+
+app.get('/test', function(req, res){
+  console.log(req);
+  res.send('Test is working');
 });
