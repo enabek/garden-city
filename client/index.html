@@ -7,17 +7,31 @@
   <!-- angular CDNs -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+
 </head>
 <body ng-app='mainApp'>
-  <div>
-    <h1> This is our header </h1>
-  </div>  
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/gardens">Gardens</a></li>
+        <li><a href="#/search">Search Gardens</a></li>
+        <li><a href="#/results">Results</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <div ui-view>
   </div>
 </body>
-
 <!-- angular scripts -->
 <script type="text/javascript" src="app.js"></script>
 
+<!-- Controller links -->
+<script src="components/home/home-controller.js"></script>
+<script src="components/gardens/gardens-controller.js"></script>
+<script src="components/search/search-controller.js"></script>
+<script src="components/results/results-controller.js"></script>
+
+    
 </html>
