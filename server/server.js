@@ -1,20 +1,31 @@
-//dependencies
+// dependencies
 var express    = require('express');
 var path       = require('path');
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
-var dbConfig   = require('./config/database.js');
-var mongoose   = require('mongoose');
+// var dbConfig   = require('./config/database.js');
 
 var jwt        = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
-//server and connection
+// server and connection
 var app = express();
 var port = 8000;
 app.listen(port, function(){
   console.log('Listening');
 });
-mongoose.connect(dbConfig.url);
+
+// database connection
+var mongoose   = require('mongoose');
+mongoose.connect('mongodb://localhost/openGarden');
+
+db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log('connected');
+});
+
+
 
 // middleware
 app.use(bodyParser.urlencoded( {extended: false} ));
