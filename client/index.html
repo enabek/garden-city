@@ -4,6 +4,7 @@
   <title>Garden City</title>
   <!-- style sheets -->
   <link rel='stylesheet' type="text/css" href="stylesheets/style.css">
+  <link rel='stylesheet' type="text/css" href="stylesheets/normalize.css">
   <!-- angular CDNs -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
@@ -12,11 +13,11 @@
 <body ng-app='mainApp'>
   <header>
     <nav>
-      <ul>
+      <ul id="nav-links">
         <li><a href="#/home">Home</a></li>
         <li><a href="#/gardens">Gardens</a></li>
         <li><a href="#/search">Search Gardens</a></li>
-        <li><a href="#/results">Results</a></li>
+        <li><a href="#/results" class="last-link">Results</a></li>
       </ul>
     </nav>
   </header>
