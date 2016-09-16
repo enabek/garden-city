@@ -1,6 +1,15 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/open-garden');
+var mongoose   = require('mongoose');
 
-var db = mongoose.connection;
+// connection
+mongoose.connect('mongodb://localhost/openGarden');
 
+db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log('connected to mongo');
+});
+
+module.exports = {
+  db: db
+}
