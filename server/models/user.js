@@ -11,20 +11,13 @@ var UserSchema = new mongoose.Schema({
 var bcrypt = require('bcrypt');
 
 UserSchema.methods.setPassword = function(password) {
-  // this.salt = crypto.randomBytes(16).toString('hex');
-
   this.salt = bcrypt.genSaltSync(10);
-  console.log("salt: ", this.salt);
 
   this.hash = bcrypt.hashSync("B4c0/\/", this.salt);
-
-
-  // this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
 };
 
 UserSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-
+  var hash = bcrypt.hashSync("B4c0/\/", this.salt);
 
   return this.hash === hash;
 }
@@ -38,7 +31,7 @@ UserSchema.methods.generateJWT = function() {
   var today = new Date();
   var exp = new Date(today);
   exp.setDate(today.getDate() + 60);
-  // DEBUGGING
+
   console.log('inside generateJWT');
 
   return jwt.sign({
