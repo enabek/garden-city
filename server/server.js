@@ -23,17 +23,37 @@ app.use(morgan('dev'));
 var passport = require('passport');
 require('./models/user.js');
 require('./config/passport.js');
-
-
-
-
-
+app.use(passport.initialize());
 
 // api 
 app.use(express.static(path.join(__dirname + '/../client')));
 
 app.use(function(req, res, next){
   console.log('Hitting the server at all');
-  console.log('req body: ', req);
+  console.log(req.body);
   next();
+});
+
+// routing
+// require('./models/user.js');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
+
+app.post('/signup', function(req, res, next) {
+  console.log('signing up!:  password:', req.body.password, ' username: ', req.body.username);
+
+  if (!req.body.username || !req.body.password) {
+    res.status(400).json({message: 'Please fill out all fields\n'});
+  }
+
+  var user = new User();
+  user.username = req.body.username;
+  user.setPassword(req.body.password);
+
+  user.save(function (err){
+    console.log('saving the user');
+    if(err){ return next(err); }
+
+    return res.json({token: user.generateJWT()})
+  });
 });

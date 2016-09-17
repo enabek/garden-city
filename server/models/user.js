@@ -7,19 +7,24 @@ var UserSchema = new mongoose.Schema({
   salt: String
 });
 
-mongoose.model('User', UserSchema);
-
 // crypt
-var crypto = require('crypto');
+var bcrypt = require('bcrypt');
 
 UserSchema.methods.setPassword = function(password) {
-  this.hash = crypto.randomBytes(16).toString('hex');
+  // this.salt = crypto.randomBytes(16).toString('hex');
 
-  this.salt = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  this.salt = bcrypt.genSaltSync(10);
+  console.log("salt: ", this.salt);
+
+  this.hash = bcrypt.hashSync("B4c0/\/", this.salt);
+
+
+  // this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
 };
 
 UserSchema.methods.validPassword = function(password) {
   var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+
 
   return this.hash === hash;
 }
@@ -43,3 +48,5 @@ UserSchema.methods.generateJWT = function() {
   }, 'catfood');
 
 }
+
+mongoose.model('User', UserSchema);
