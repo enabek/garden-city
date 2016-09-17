@@ -17,17 +17,34 @@ app.listen(port, function(){
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var expressSession = require('express-session');
-app.use(expressSession({secret: 'secretSauce',
-                        resave: false,
-                        saveUninitialized: false}));
-app.use(passport.initialize());
-app.use(passport.session());
 
-// passport config
-var User = require('./models/user.js');
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+require('./config/setUpPassport.js')(passport, LocalStrategy, expressSession);
+
+
+
+
+
+
+
+
+
+
+
+// authentication
+// var passport = require('passport');
+// var LocalStrategy = require('passport-local').Strategy;
+// var expressSession = require('express-session');
+// app.use(expressSession({secret: 'secretSauce',
+//                         resave: false,
+//                         saveUninitialized: false}));
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// // passport config
+// var User = require('./models/user.js');
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 // db and models
 var db   = require('./config/database.js');
