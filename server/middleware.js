@@ -1,24 +1,17 @@
 // dependencies
 var morgan = require('morgan');
-
-var userHook = function(res, req, next) {
-  console.log('inside the user router');
-  next();
-}
+var path   = require('path');
 
 module.exports = function(app, express) {
+  console.log('loaded middleware');
+  // static files
+  app.use(express.static(path.join(__dirname + '/../client')));
 
+  // Routing
+
+  // users
   var userRouter = express.Router();
-  app.use('/users', userRouter);
-
-  userRouter.use('/', userHook);
-
-  // userRouter.get('/', function(req, res, next) {
-  //   console.log('first function');
-  //   next()
-  // }, function(req, res) {
-  //   console.log('second function!')
-  //   res.send('something to give back to you!');
-  // });
+  require('./services/userRouter.js')(userRouter);
+  app.use('/user', userRouter);
 
 }
