@@ -1,9 +1,5 @@
 // dependencies
 var express    = require('express');
-// var path       = require('path');
-// var bodyParser = require('body-parser');
-// var morgan     = require('morgan');
-
 
 // server and connection
 var app = express();
