@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ui.router', 'home', 'gardens', 'search', 'results'])
+var app = angular.module('mainApp', ['ui.router', 'home', 'gardens', 'search', 'results', 'auth'])
 
 app.config(function($stateProvider) {
   $stateProvider
@@ -16,15 +16,22 @@ app.config(function($stateProvider) {
     controllerAs: 'gardens'
   })
   .state('search', {
-  url: '/search',
-  templateUrl: '/components/search/search.html',
-  controller: 'SearchCtrl',
-  controllerAs: 'search'
+    url: '/search',
+    templateUrl: '/components/search/search.html',
+    controller: 'SearchCtrl',
+    controllerAs: 'search'
   })
   .state('results', {
-  url: '/results',
-  templateUrl: '/components/results/results.html',
-  controller: 'ResultsCtrl',
-  controllerAs: 'results'
+    url: '/results',
+    templateUrl: '/components/results/results.html',
+    controller: 'ResultsCtrl',
+    controllerAs: 'results'
+  })
+  .state('auth', {
+    url:'/auth',
+    templateUrl: '/components/auth/auth.html',
+    controller: 'authCtrl',
+    controllerAs: 'auth'
+
   })
 })

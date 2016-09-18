@@ -30,7 +30,6 @@ app.use(express.static(path.join(__dirname + '/../client')));
 
 app.use(function(req, res, next){
   console.log('Hitting the server at all');
-  console.log(req.body);
   next();
 });
 
@@ -65,7 +64,6 @@ app.post('/login', function(req, res, next) {
     if (err) { return next(err); };
     if (!user) {res.redirect('/signup')};
     if (user) {
-      console.log('returning something...');
       return res.json({token: user.generateJWT()});
     } else {
       return res.status(401).json(info);
@@ -74,3 +72,17 @@ app.post('/login', function(req, res, next) {
 });
 
 var jwt = require('express-jwt');
+var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
+
+// testing
+app.post('/membersOnly', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (user) {
+      console.log("reached members only!");
+    }
+    res.send();
+  })(req, res, next);
+});
+
+app.post('/needsToken', auth, function(req, res, next) {
+})
