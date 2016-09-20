@@ -4,8 +4,8 @@ module.exports = function(express) {
   // router for users
   var userRouter = express.Router();
 
-  userRouter.post('/signup', userController.checkAllFieldsProvided, userController.checkUserExists,
-    userController.signUp, userController.test);
+  userRouter.post('/signup', userController.checkAllFieldsProvided, 
+    userController.checkUserExists, userController.signUp);
 
   return userRouter;
 }

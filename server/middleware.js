@@ -9,7 +9,6 @@ var end = function(req, res) {
 }
 
 module.exports = function(app, express) {
-  console.log('loaded middleware');
 
   // logging and parsing
   app.use(bodyParser.urlencoded( {extended: false} ));
