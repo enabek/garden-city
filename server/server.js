@@ -13,10 +13,6 @@ var db = require('./config/database.js');
 // middleware
 require('./middleware.js')(app, express);
 
-// app.use(bodyParser.urlencoded( {extended: false} ));
-// app.use(bodyParser.json());
-// app.use(morgan('dev'));
-
 // authentication
 // var passport = require('passport');
 // require('./models/user.js');

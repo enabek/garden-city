@@ -37,7 +37,10 @@ UserSchema.methods.generateJWT = function() {
     username: this.username,
     exp: parseInt(exp.getTime() / 1000),
   }, 'catfood');
-
 }
 
-mongoose.model('User', UserSchema);
+var User = mongoose.model('User', UserSchema);
+
+module.exports = {
+  User: User
+}
