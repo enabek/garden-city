@@ -25,17 +25,24 @@ var checkUserExists = function(req, res, next) {
     else if (user.length === 0) {
       next();
     }
-  });
-  
-}
-
+  });  
+};
 
 var signUp = function(req, res, next) {
   console.log('signing up');
 
   var user = new User();
+  user.username = req.body.username;
+  user.setPassword(req.body.password);
 
-  next();
+  user.save(function (err) {
+    if (err) { return err; }
+    else {
+      console.log('signed up!');
+      next();
+    }
+  });
+
 }
 
 module.exports = {

@@ -16,40 +16,7 @@ require('./middleware.js')(app, express);
 // authentication
 // var passport = require('passport');
 // require('./models/user.js');
-// require('./config/passport.js');
 // app.use(passport.initialize());
-
-// api 
-// app.use(express.static(path.join(__dirname + '/../client')));
-
-// app.use(function(req, res, next){
-//   console.log('Hitting the server at all');
-//   next();
-// });
-
-// routing
-
-
-// users
-// var mongoose = require('mongoose');
-// var User = mongoose.model('User');
-
-// app.post('/signup', function(req, res, next) {
-
-//   if (!req.body.username || !req.body.password) {
-//     res.status(400).json({message: 'Please fill out all fields\n'});
-//   }
-
-//   var user = new User();
-//   user.username = req.body.username;
-//   user.setPassword(req.body.password);
-
-//   user.save(function (err){
-//     if (err) { return next(err); }
-
-//     return res.json({token: user.generateJWT()})
-//   });
-// });
 
 // app.post('/login', function(req, res, next) {
 //   if(!req.body.username || !req.body.password){
@@ -78,11 +45,4 @@ require('./middleware.js')(app, express);
 //     }
 //     res.send(user);
 //   })(req, res, next);
-// });
-
-// app.get('/getUsers', function(req, res, next) {
-//   console.log("getting users");
-//   User.find(function(err, user) {
-//     res.send(user);
-//   });
 // });

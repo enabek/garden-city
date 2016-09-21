@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
   salt: String
 });
 
-// crypt
+// password cryption
 var bcrypt = require('bcrypt');
 
 UserSchema.methods.setPassword = function(password) {
@@ -27,10 +27,10 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 UserSchema.methods.generateJWT = function() {
 
-  // set expiration to 10 days
+  // set expiration to 3 days
   var today = new Date();
   var exp = new Date(today);
-  exp.setDate(today.getDate() + 60);
+  exp.setDate(today.getDate() + 3);
 
   return jwt.sign({
     _id: this._id,

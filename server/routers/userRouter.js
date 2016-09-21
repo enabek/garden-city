@@ -1,4 +1,5 @@
 var userController = require('../services/users/userController.js');
+var authController = require('../services/auth/authController.js');
 
 module.exports = function(express) {
   // router for users
@@ -6,6 +7,8 @@ module.exports = function(express) {
 
   userRouter.post('/signup', userController.checkAllFieldsProvided, 
     userController.checkUserExists, userController.signUp);
+
+  // userRouter.post('/login', userController.checkAllFieldsProvided, authController.checkCreds);
 
   return userRouter;
 }

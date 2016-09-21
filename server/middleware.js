@@ -18,6 +18,12 @@ module.exports = function(app, express) {
   // static files
   app.use(express.static(path.join(__dirname + '/../client')));
 
+  // auth
+  var passport = require('passport');
+  var session = require('express-session');
+
+  require('./test');
+
   // Routing
   
   // users
