@@ -8,7 +8,7 @@ app.listen(port, function(){
   console.log('Listening');
 });
 
-var db = require('./config/database.js');
+require('./config/database.js');
 
 // middleware
 require('./middleware.js')(app, express);
