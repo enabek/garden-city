@@ -1,16 +1,37 @@
-var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = require('../models/user.js').User;
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
+module.exports = function(passport) {
 
-    User.findOne( {username: username}, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.validPassword(password)) { return done(null, false) };
-      return done(null, user);
-    });
-  }
-));
+  // required for persistent login sessions
+  // passport needs ability to serialize and unserialize users out of session
+
+  console.log('configuring passport');
+
+  passport.serializeUser(function (user, next) {
+    next(null, user.username);
+  });
+
+  passport.deserializeUser(function (user, next) {
+    next(null, user.username);
+  })
+
+  // strategy
+  passport.use(new LocalStrategy(
+    function(username, password, next) {
+      User.findOne({ username:username }, function (err, user) {
+        if (err) { 
+          return next(err); 
+        }
+        if (!user) {
+          return next(null, false); 
+        }
+        if (!user.validPassword(password)) { 
+          return next(null, false);
+        }
+        return next(null, user);
+      });
+    }
+  ));
+
+};

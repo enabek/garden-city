@@ -22,7 +22,11 @@ module.exports = function(app, express) {
   var passport = require('passport');
   var session = require('express-session');
 
-  require('./test');
+  require('./config/passport.js')(passport);
+
+  app.use(session({ secret: 'catfood' }));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // Routing
   
