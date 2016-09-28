@@ -24,9 +24,10 @@ module.exports = function(app, express) {
 
   require('./config/passport.js')(passport);
 
-  app.use(session({ secret: 'catfood' }));
+  app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
   app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(passport.session()); // persistent login sessions
+
 
   // Routing
   
