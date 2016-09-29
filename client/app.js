@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ui.router', 'home', 'gardens', 'search', 'results', 'auth'])
+var app = angular.module('mainApp', ['ui.router', 'home', 'gardens', 'search', 'results', 'auth', 'test'])
 
 app.config(function($stateProvider) {
   $stateProvider
